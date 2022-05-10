@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- Promises -->
+    <script>
+      // Single thread (processa linha por linha, mas o IO é nao bloqueante)
+
+      console.log("Primeiro");
+      setTimeout(() => {
+        console.log("quarto");
+      }, 3000);
+      console.log("segundo");
+
+      // Promise
+      // Estados = Pendendte, Realizado, Rejeitado, Estabelecido
+      let a = 74;
+      let b = 35;
+      const aPormo = new Promise((resolve, reject) => {
+        if (a + b < 100) {
+          resolve("calulo certo");
+        }
+        reject("Soma errada");
+      });
+
+      aPormo
+        .then((calc) => {
+          confirm.log(calc);
+        })
+        .catch((error) => {
+          console.log("Nossa Amigo, vamos estudar mais : " + error);
+        });
+
+      // fazer request pro : http://viacep.com.br/ws/25040150/json/
+
+      const Jaresolve = new Promise((resolve, reject) => {
+        resolve(25040150);
+      });
+
+      Jaresolve.then((cep) => {
+        fetch("http://viacep.com.br/ws/" + cep + "/json/").then((dado) => {
+          dado.json().then((ender) => {
+            console.log(ender);
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
